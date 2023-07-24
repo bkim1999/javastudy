@@ -71,10 +71,20 @@ public class BankAccount {
     return accNo;
   }
   
-  public void setAccountNumber(String an) {
-    accNo = an;
+  public void setBalance(long balance) {
+    this.balance = balance;
+  }
+  public void setAccountNumber(String accNo) {
+    this.accNo = accNo;
   }
   
+  /**
+   * 이체 메소드<br>
+   * 다른 계좌로 이체하는 메소드
+   * 내 계좌에서 출금을 먼저 수행사고, 출금된 금액만큼 다른 계좌로 입금한다.
+   * @param account 상대 계좌
+   * @param amount 이체할 금액
+   */
   public void transfer(BankAccount account, long amount) {
     long withdraw = this.withdraw(amount);
     account.deposit(withdraw);
