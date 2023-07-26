@@ -1,7 +1,9 @@
 package ex07_Class;
 
+import java.util.Objects;
+
 /*
- * Object 클래스
+ * java.lang.Object 클래스
  * 1. 최상위 슈퍼클래스
  * 2. 슈퍼클래스 없는 클래스들은 모두 Object의 서브클래스
  * 3. 모든 객체는 Object로 저장 가능
@@ -22,7 +24,26 @@ public class Person {
     this.name = name;
     this.age = age;
   }
+  
+  
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(age, name);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Person other = (Person) obj;
+    return age == other.age && Objects.equals(name, other.name);
+  }
+   
   public String getName() {
     return name;
   }
@@ -39,4 +60,4 @@ public class Person {
     this.age = age;
   }
 
-}
+}  
