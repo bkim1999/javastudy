@@ -41,7 +41,7 @@ public class Bus {
       System.out.println("하차 실패! " + seatNo + "번 좌석은 빈 좌석이다.");
       return;
     }
-    System.out.println("하차 성공! " + person.getName() + "는 " + seatNo + "번 좌석에서 일어났다.");
+    System.out.println("하차 성공! " + person.getName() + "는 " + seatNo + "번 좌석에서 일어났다."); 
     seats.set(seatNo - 1, new Seat());
   }
   
@@ -50,7 +50,7 @@ public class Bus {
       Person person = seats.get(i).getPerson();
       String name = person == null ? "공석" : person.getName();
       System.out.println((i + 1) + "번 좌석: " + name);
-    }
-  }
+    } 
+  } 
   
 }
