@@ -1,4 +1,4 @@
-package ex05_Reader;
+package ex06_Try_Catch_Resources;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,4 +28,4 @@ public class ex06_try_catch_resources {
       e.printStackTrace();
     }
   }
-}
+} 

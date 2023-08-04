@@ -27,7 +27,7 @@ public class MainWrapper {
     }
     
     // 파일을 File 객체로 만들기
-    File file = new File(dir, "ex01.dat");
+    File file = new File(dir, "ex01.txt");
     
     // 파일출력스트림 선언
     FileOutputStream fout = null;

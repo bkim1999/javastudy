@@ -64,7 +64,7 @@ public class MainWrapper {
       int c = 'H';
       char[] cbuf = {'a', 'n', 'n', 'i'};
       String str = "그녀는 신인가?";
-      
+       
       fw.write(c);
       fw.write(cbuf);
       fw.newLine();
