@@ -20,11 +20,8 @@ public class MainWrapper {
     }
     File file = new File(dir, "alphabet.txt");
     
-    BufferedWriter bw = null;
     
-    try {
-      
-      bw = new BufferedWriter(new FileWriter(file));
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(file));){
       
       for(int i = 0; i < 26; i++) {
         bw.write((char)('A' + i));
@@ -34,12 +31,6 @@ public class MainWrapper {
       
     } catch(IOException e) {
       e.printStackTrace();
-    } finally {
-      try {
-        if(bw != null) { bw.close(); }
-      } catch(IOException e) {
-        e.printStackTrace();
-      }
     }
     
   }
@@ -52,13 +43,8 @@ public class MainWrapper {
     File src = new File(dir, "alphabet.txt");
     File copy = new File(dir, "alphabet2.txt");
     
-    BufferedReader br = null;
-    BufferedWriter bw = null;
-    
-    try {
-      
-      br = new BufferedReader(new FileReader(src));
-      bw = new BufferedWriter(new FileWriter(copy));
+    try (BufferedReader br = new BufferedReader(new FileReader(src));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(copy))){
       
       String line = null;
 
@@ -70,14 +56,7 @@ public class MainWrapper {
       
     } catch(IOException e) {
       e.printStackTrace();
-    } finally {
-      try {
-        if(bw != null) { bw.close(); }
-        if(br != null) { br.close(); }
-      } catch(IOException e) {
-        e.printStackTrace();
-      }
-    }
+    } 
   }
   
   public static void main(String[] args) {

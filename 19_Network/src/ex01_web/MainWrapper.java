@@ -1,4 +1,4 @@
-package ex01_Web;
+package ex01_web;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

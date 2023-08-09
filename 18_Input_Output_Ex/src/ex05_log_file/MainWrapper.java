@@ -50,27 +50,23 @@ public class MainWrapper {
         // 2023-08-04 15:11:23    invalid operator ++
         // 2023-08-04 15:12:52    null
 
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd a h:mm:ss");
+        String datetime = format.format(calendar.getTime());
+
         File dir = new File("C:/storage/");
         if(dir.exists() == false) {
           dir.mkdirs();
         }
         File file = new File(dir, "log.txt");
         
-        BufferedWriter bw = null;
-        
-        try {
-         
-          bw = new BufferedWriter(new FileWriter(file, true));
-
-          Calendar calendar = Calendar.getInstance();
-          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-          String datetime = format.format(calendar.getTime());
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
 
           StringBuilder sb = new StringBuilder();
           
-          sb.append(datetime);
-          sb.append("\t");
-          sb.append(e.getMessage());
+          sb.append(datetime).append("\t");
+          sb.append(e.getMessage()).append("\t");
+          sb.append(e.getClass().getName());
           
           bw.write(sb.toString());
           bw.newLine();
@@ -79,12 +75,6 @@ public class MainWrapper {
           
         } catch(IOException ioe) {
           e.printStackTrace();
-        } finally {
-          try {
-            if(bw != null) { bw.close(); }
-          } catch(IOException ioe) {
-            e.printStackTrace();
-          }
         }
       }      
     }
