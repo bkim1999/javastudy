@@ -1,7 +1,10 @@
 package ex04_Lotto;
 
-import java.util.InputMismatchException;
+import java.security.SecureRandom;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Lotto {
   
@@ -30,16 +33,29 @@ public class Lotto {
    * @param money 로또 구매 비용
    */
   public void generateLotto(int money) {
-    int counter = money / 1000;
-    for(int i = 0; i < counter; i++) {
-      StringBuilder sb = new StringBuilder("0" + (i + 1) + " : ");
-      for(int m = 0; m < 6; m++) {
-        sb.append(String.format("%4d", (int)(Math.random() * 45 + 1)));
+    while(money > 0) {
+      int row = (money >= 5000) ? 5 : money / 1000;
+      int[][] lotto = new int[row][6];
+      for(int i = 0; i < lotto.length; i++) {
+        SecureRandom secureRandom = new SecureRandom();
+        Set<Integer> set = new HashSet<Integer>();
+        while(set.size() != 6) {
+            set.add(secureRandom.nextInt(46) + 1);
+        }
+        Iterator<Integer> arm = set.iterator();
+        for(int j = 0; j < lotto[i].length; j++) {
+          lotto[i][j] = arm.next();
+        }
       }
-      System.out.println(sb.toString());
-      if((i + 1) % 5 == 0) {
-        System.out.println("------------------------------");
+      for(int i = 0; i < lotto.length; i++) { 
+        System.out.print(String.format("%02d: ", i + 1));
+        for(int j = 0; j < lotto[i].length; j++) {
+          System.out.print(String.format("%4d", lotto[i][j]));
+        }
+        System.out.println();
       }
+      System.out.println("---------------------------------");
+      money -= 5000;
     }
   }
 }
